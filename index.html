@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto Personal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Presupuesto Personal</h1>
+    <div id="contenedor-presupuesto">
+        <h2>Agregar Transacción</h2>
+        <input type="text" id="Descripción" placeholder="Descripción">
+        <input type="number" id="monto" placeholder="Monto">
+        <select id="caja-eleccion">
+            <option value="Ingreso">Ingreso</option>
+            <option value="Gasto">Gasto</option>
+        </select>
+        <button id="agregar-transaccion">Agregar Transacción</button>
+    </div>
+    <div id="resumen">
+        <h2>Resumen</h2>
+        <div id="grafico">
+            <h2>Gráfico de Ingresos y Gastos</h2>
+            <canvas id="miGrafico"></canvas>
+        </div>        
+        <p>Ingresos Totales: $<span id="ingreso-total">0.00</span></p>
+        <p>Gastos Totales: $<span id="gasto-total">0.00</span></p>
+        <p>Saldo: $<span id="balance">0.00</span></p>
+    </div>
+    <div id="transacciones">
+        <h2>Transacciones</h2>
+        <ul id="lista-transacciones"></ul>
+    </div>
+  <video id="video-prueba" height="300px" width="500px" src="/assets/La importancia del ahorro - SBS Perú (720p, h264, youtube).mp4" autoplay muted controls>
+  </video>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
+ 

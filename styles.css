@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2d3338;
+}
+
+h1 {
+    margin-top: 20px;
+    background: rgb(248, 248, 247);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#contenedor-presupuesto {
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+input[type="text"], input[type="number"], select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #010203;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #dd3838;
+}
+
+#resumen {
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#transacciones {
+    margin: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 300px;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li.Ingreso {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+li.Gasto {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+    
