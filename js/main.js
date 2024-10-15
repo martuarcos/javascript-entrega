@@ -1,8 +1,8 @@
 let transactions = [];
-const API_URL = './transacciones.json'; // Ruta del archivo JSON
+const LOCAL_STORAGE_KEY = 'transactions'; // Usar localStorage para almacenar transacciones
 let miGrafico; // Variable global para almacenar el gráfico
 
-// Cargar transacciones desde el archivo JSON cuando la página se carga
+// Cargar transacciones desde localStorage cuando la página se carga
 document.addEventListener("DOMContentLoaded", loadTransactions);
 document.getElementById("agregar-transaccion").addEventListener("click", addTransaction);
 document.getElementById("Descripción").addEventListener("keypress", (e) => {
@@ -11,21 +11,16 @@ document.getElementById("Descripción").addEventListener("keypress", (e) => {
     }
 });
 
-// Cargar transacciones desde el archivo JSON
-async function loadTransactions() {
-    try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        transactions = data.transactions;
-        updateSummary();
-        updateTransactionList();
-    } catch (error) {
-        console.error('Error al cargar las transacciones:', error);
-    }
+// Cargar transacciones desde localStorage
+function loadTransactions() {
+    const storedTransactions = localStorage.getItem(LOCAL_STORAGE_KEY);
+    transactions = storedTransactions ? JSON.parse(storedTransactions) : [];
+    updateSummary();
+    updateTransactionList();
 }
 
 // Agregar una nueva transacción
-async function addTransaction() {
+function addTransaction() {
     const descriptionInput = document.getElementById("Descripción");
     const amountInput = document.getElementById("monto");
     const typeInput = document.getElementById("caja-eleccion");
@@ -40,7 +35,7 @@ async function addTransaction() {
         descriptionInput.value = "";
         amountInput.value = "";
         
-        await saveTransactions();
+        saveTransactions();
         updateSummary();
         updateTransactionList();
     }
@@ -82,7 +77,7 @@ function crearGrafico() {
 
     // Crear un nuevo gráfico
     miGrafico = new Chart(ctx, {
-        type: 'pie', // Puedes cambiar a 'bar' si prefieres un gráfico de barras
+        type: 'pie',
         data: {
             labels: ['Ingresos', 'Gastos'],
             datasets: [{
@@ -130,24 +125,15 @@ function updateTransactionList() {
 }
 
 // Elimina una transacción
-async function removeTransaction(index) {
+function removeTransaction(index) {
     transactions.splice(index, 1);
-    await saveTransactions();
+    saveTransactions();
     updateSummary();
     updateTransactionList();
 }
 
-// Guarda las transacciones en el archivo JSON
-async function saveTransactions() {
-    try {
-        await fetch(API_URL, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ transactions })
-        });
-    } catch (error) {
-        console.error('Error al guardar las transacciones:', error);
-    }
+// Guarda las transacciones en localStorage
+function saveTransactions() {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(transactions));
 }
+
